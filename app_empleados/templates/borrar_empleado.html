@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar Borrado de Empleado</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; text-align: center; }
+        .container { max-width: 500px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .product-details { margin-bottom: 20px; text-align: left; padding-left: 30px; }
+        .btn { display: inline-block; padding: 10px 20px; text-decoration: none; color: white; margin: 5px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .btn-confirmar { background-color: #DC3545; }
+        .btn-confirmar:hover { background-color: #c82333; }
+        .btn-cancelar { background-color: #6c757d; }
+        .btn-cancelar:hover { background-color: #5a6268; }
+        .button-group { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¿Estás seguro de que quieres borrar a este empleado?</h1>
+        <div class="product-details">
+            <p><strong>Nombre:</strong> {{ empleado.nombre_empleado }} {{ empleado.apellido }}</p>
+            <p><strong>Puesto:</strong> {{ empleado.puesto }}</p>
+        </div>
+        <form method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-confirmar">Sí, Borrar Empleado</button>
+        </form>
+        <a href="/" class="btn btn-cancelar">Cancelar</a>
+    </div>
+</body>
+</html>

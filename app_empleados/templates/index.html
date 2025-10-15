@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Empleados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 90%; border-collapse: collapse; margin: auto; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .btn { display: inline-block; padding: 5px 10px; font-size: 14px; text-align: center; text-decoration: none; color: #fff; border-radius: 4px; border: 1px solid transparent; margin-right: 5px; }
+        .btn-ver { background-color: #007BFF; }
+        .btn-ver:hover { background-color: #0056b3; }
+        .btn-editar { background-color: #ffc107; }
+        .btn-editar:hover { background-color: #e0a800; }
+        .btn-borrar { background-color: #dc3545; }
+        .btn-borrar:hover { background-color: #c82333; }
+        .btn-agregar { background-color: #28a745; padding: 10px 15px; }
+        .btn-agregar:hover { background-color: #218838; }
+        .contenedor-boton { margin-top: 20px; text-align: center; }
+        h1 { text-align: center; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Empleados</h1>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Puesto</th>
+            <th>Fecha de Contratación</th>
+            <th>Salario</th>
+            <th>Acciones</th>
+        </tr>
+        {% for empleado in empleados %}
+        <tr>
+            <td>{{ empleado.nombre_empleado }}</td>
+            <td>{{ empleado.apellido }}</td>
+            <td>{{ empleado.puesto }}</td>
+            <td>{{ empleado.fecha_contratacion }}</td>
+            <td>{{ empleado.salario }}</td>
+            <td>
+                <a href="{% url 'ver_empleado' empleado.id %}" class="btn btn-ver">Ver</a>
+                <a href="{% url 'editar_empleado' empleado.id %}" class="btn btn-editar">Editar</a>
+                <a href="{% url 'borrar_empleado' empleado.id %}" class="btn btn-borrar">Borrar</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" style="text-align: center;">No hay empleados registrados.</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="contenedor-boton">
+        <a href="{% url 'agregar_empleado' %}" class="btn btn-agregar">Agregar Empleado</a>
+    </div>
+</body>
+</html>
